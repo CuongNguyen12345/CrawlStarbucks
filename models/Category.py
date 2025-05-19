@@ -1,9 +1,6 @@
 from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship, backref
-from Starbucks.models.Drink import Drink  # Thêm nếu chưa import
-
-
-from Starbucks.db.database import Base
+from CrawlStarbucks.db.database import Base
 
 class Category(Base):
     __tablename__ = 'category'

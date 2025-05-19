@@ -1,0 +1,423 @@
+/* Card Styles */
+
+/* Beverage Grid */
+.beverage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-xl);
+}
+
+/* Beverage Card */
+.beverage-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-medium),
+    box-shadow var(--transition-medium);
+  display: flex;
+  flex-direction: column;
+}
+
+.beverage-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-image {
+  position: relative;
+  height: 180px;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.beverage-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.favorite-btn {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: var(--light-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  backdrop-filter: blur(4px);
+  transition: all var(--transition-fast);
+}
+
+.favorite-btn:hover,
+.favorite-btn.active {
+  background-color: var(--white);
+  color: var(--error-red);
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.drink-name {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-sm);
+  color: var(--starbucks-light-green);
+}
+
+.drink-description {
+  font-size: 0.9rem;
+  color: var(--medium-text);
+  margin-bottom: var(--space-lg);
+  flex-grow: 1;
+}
+
+/* Nutrition Facts */
+.nutrition-facts {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md);
+}
+
+.nutrition-fact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.fact-value {
+  font-weight: 700;
+  color: var(--starbucks-light-green);
+  font-size: 1.1rem;
+}
+
+.fact-label {
+  font-size: 0.8rem;
+  color: var(--light-text);
+}
+
+/* Card Actions */
+.card-actions {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.details-btn,
+.compare-btn {
+  flex: 1;
+  padding: var(--space-sm) 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.details-btn {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+}
+
+.details-btn:hover {
+  background-color: var(--starbucks-light-green);
+  transform: translateY(-2px);
+}
+
+.compare-btn {
+  background-color: transparent;
+  color: var(--starbucks-green);
+  border: 1px solid var(--starbucks-green);
+}
+
+.compare-btn:hover {
+  background-color: rgba(0, 98, 65, 0.05);
+  transform: translateY(-2px);
+}
+
+.compare-btn.active {
+  background-color: var(--starbucks-cream);
+  color: var(--starbucks-light-green);
+}
+
+/* Details Modal */
+.details-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.details-modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  padding: var(--space-xl);
+  border-bottom: 1px solid var(--light-gray);
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--off-white);
+  color: var(--medium-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background-color: var(--light-gray);
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: var(--space-xl);
+}
+
+.drink-details {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--space-xl);
+}
+
+.drink-image {
+  width: 100%;
+  height: 300px;
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+}
+
+.drink-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.drink-info h2 {
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-md);
+}
+
+.drink-info p {
+  color: var(--medium-text);
+  margin-bottom: var(--space-lg);
+  line-height: 1.6;
+}
+
+.nutrition-details {
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.nutrition-details h3 {
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-lg);
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--space-lg);
+}
+
+.nutrition-item {
+  text-align: center;
+}
+
+.nutrition-item .value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-xs);
+}
+
+.nutrition-item .label {
+  color: var(--medium-text);
+  font-size: 0.9rem;
+}
+
+/* Comparison Panel */
+.comparison-panel {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-lg);
+  transform: translateY(100%);
+  transition: transform var(--transition-medium);
+  z-index: 90;
+}
+
+.comparison-panel.active {
+  transform: translateY(0);
+}
+
+.comparison-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.comparison-title {
+  color: var(--starbucks-light-green);
+  font-size: 1.2rem;
+}
+
+.comparison-close {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--off-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.comparison-close:hover {
+  background-color: var(--light-gray);
+  transform: rotate(90deg);
+}
+
+.comparison-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.comparison-item {
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md);
+  position: relative;
+}
+
+.comparison-item img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--border-radius-sm);
+  margin-bottom: var(--space-sm);
+}
+
+.comparison-item h4 {
+  font-size: 1rem;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-xs);
+}
+
+.comparison-item .remove-item {
+  position: absolute;
+  top: var(--space-xs);
+  right: var(--space-xs);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--error-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  transition: all var(--transition-fast);
+}
+
+.comparison-item .remove-item:hover {
+  background-color: var(--error-red);
+  color: var(--white);
+}
+
+.compare-action {
+  text-align: center;
+}
+
+.compare-now-btn {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+  padding: var(--space-md) var(--space-xl);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.compare-now-btn:hover {
+  background-color: var(--starbucks-light-green);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .drink-details {
+    grid-template-columns: 1fr;
+  }
+
+  .drink-image {
+    height: 200px;
+  }
+
+  .comparison-panel {
+    padding: var(--space-md);
+  }
+
+  .comparison-items {
+    grid-template-columns: 1fr;
+  }
+}

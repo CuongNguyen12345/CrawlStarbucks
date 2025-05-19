@@ -1,0 +1,282 @@
+/* Compare Page Styles */
+
+.compare-page {
+  padding: var(--space-xl) 0;
+  min-height: 100vh;
+  background-color: var(--off-white);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  font-size: 0.9rem;
+}
+
+.breadcrumb a {
+  color: var(--medium-text);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+  color: var(--starbucks-green);
+}
+
+.breadcrumb span {
+  color: var(--light-text);
+}
+
+.breadcrumb .current {
+  color: var(--starbucks-light-green);
+  font-weight: 600;
+}
+
+/* Compare Header */
+.compare-header {
+  text-align: center;
+  margin-bottom: var(--space-xxl);
+}
+
+.compare-header h1 {
+  font-size: 2.5rem;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-md);
+}
+
+.compare-description {
+  font-size: 1.1rem;
+  color: var(--medium-text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Compare Grid */
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xxl);
+}
+
+.compare-column {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Drink Card */
+.drink-card {
+  position: relative;
+  text-align: center;
+  padding-bottom: var(--space-lg);
+  margin-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.drink-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: var(--border-radius-lg);
+  margin-bottom: var(--space-md);
+}
+
+.drink-card h2 {
+  font-size: 1.3rem;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-xs);
+}
+
+.drink-category {
+  font-size: 0.9rem;
+  color: var(--medium-text);
+}
+
+.remove-btn {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--error-red);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.remove-btn:hover {
+  background-color: var(--error-red);
+  color: var(--white);
+  transform: rotate(90deg);
+}
+
+/* Comparison Details */
+.comparison-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) 0;
+}
+
+.detail-label {
+  font-size: 0.95rem;
+  color: var(--medium-text);
+}
+
+.detail-value {
+  font-weight: 600;
+  color: var(--starbucks-light-green);
+}
+
+/* Comparison Chart */
+.comparison-chart {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--space-xxl);
+}
+
+.comparison-chart h2 {
+  font-size: 1.6rem;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-xl);
+}
+
+.chart-controls {
+  display: flex;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.chart-type-btn {
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  color: var(--medium-text);
+  transition: all var(--transition-fast);
+}
+
+.chart-type-btn:hover {
+  border-color: var(--starbucks-green);
+  color: var(--starbucks-green);
+}
+
+.chart-type-btn.active {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+  border-color: var(--starbucks-green);
+}
+
+.chart-container {
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Comparison Insights */
+.comparison-insights {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.comparison-insights h2 {
+  font-size: 1.6rem;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-xl);
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+}
+
+.insight-card {
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-lg);
+  transition: transform var(--transition-fast);
+}
+
+.insight-card:hover {
+  transform: translateY(-4px);
+}
+
+.insight-card h3 {
+  font-size: 1.2rem;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-md);
+}
+
+.insight-card p {
+  font-size: 0.95rem;
+  color: var(--medium-text);
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .compare-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-controls {
+    flex-wrap: wrap;
+  }
+
+  .chart-type-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .compare-header h1 {
+    font-size: 2rem;
+  }
+
+  .insights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-controls {
+    flex-direction: column;
+  }
+}

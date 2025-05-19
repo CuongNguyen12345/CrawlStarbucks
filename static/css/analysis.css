@@ -1,0 +1,234 @@
+/* Analysis Styles */
+
+/* Data Analysis Section */
+.data-analysis {
+  background-color: var(--starbucks-cream);
+  padding: var(--space-xxxl) 0;
+}
+
+/* Chart Selector */
+.chart-selector {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+.chart-btn {
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius-md);
+  background-color: var(--white);
+  color: var(--medium-text);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  border: 2px solid transparent;
+}
+
+.chart-btn:hover {
+  background-color: var(--off-white);
+  color: var(--starbucks-green);
+}
+
+.chart-btn.active {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+  border-color: var(--starbucks-green);
+}
+
+/* Chart Container */
+.chart-container {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xxl);
+  position: relative;
+}
+
+.chart-image {
+  width: 100%;
+  height: 400px;
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-lg);
+}
+
+.chart-data {
+  display: flex;
+  justify-content: center;
+}
+
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  justify-content: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.color-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.color-box.coffee {
+  background-color: var(--starbucks-green);
+}
+
+.color-box.tea {
+  background-color: var(--starbucks-gold);
+}
+
+.color-box.frappuccino {
+  background-color: var(--accent-teal);
+}
+
+.color-box.refresher {
+  background-color: var(--warning-yellow);
+}
+
+.legend-label {
+  font-size: 0.9rem;
+  color: var(--medium-text);
+}
+
+/* Comparison Tool */
+.comparison-tool {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-lg);
+  text-align: center;
+}
+
+.comparison-title {
+  margin-bottom: var(--space-sm);
+  color: var(--starbucks-light-green);
+}
+
+.comparison-description {
+  margin-bottom: var(--space-xl);
+  color: var(--medium-text);
+}
+
+.compare-drinks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.compare-slot {
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-md);
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.compare-slot:hover {
+  background-color: var(--light-gray);
+}
+
+.slot-placeholder {
+  font-size: 1rem;
+  color: var(--light-text);
+  font-weight: 600;
+}
+
+.compare-now-btn {
+  padding: var(--space-md) var(--space-xl);
+  background-color: var(--starbucks-green);
+  color: var(--white);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.compare-now-btn:hover {
+  background-color: var(--starbucks-light-green);
+  transform: translateY(-2px);
+}
+
+/* Customization Tips */
+.customization-tips {
+  padding: var(--space-xxxl) 0;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+.tip-card {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  transition: transform var(--transition-medium),
+    box-shadow var(--transition-medium);
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.tip-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-medium);
+}
+
+.tip-card:hover .tip-icon {
+  transform: scale(1.1);
+}
+
+.tip-icon.sugar {
+  background-color: var(--warning-yellow);
+}
+
+.tip-icon.milk {
+  background-color: var(--starbucks-cream);
+}
+
+.tip-icon.caffeine {
+  background-color: var(--starbucks-green);
+}
+
+.tip-icon.flavor {
+  background-color: var(--starbucks-gold);
+}
+
+.tip-title {
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-md);
+  font-size: 1.2rem;
+}
+
+.tip-text {
+  color: var(--medium-text);
+  font-size: 0.95rem;
+}

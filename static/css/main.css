@@ -1,0 +1,336 @@
+/* Main Stylesheet */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css');
+
+:root {
+  /* Color Palette */
+  --starbucks-green: #006241;
+  --starbucks-light-green: #1e3932;
+  --starbucks-gold: #c6a880;
+  --starbucks-cream: #f9f5f1;
+  --dark-text: #212121;
+  --medium-text: #4a4a4a;
+  --light-text: #767676;
+  --white: #ffffff;
+  --off-white: #f8f8f8;
+  --light-gray: #e5e5e5;
+  --medium-gray: #d4d4d4;
+  --dark-gray: #8e8e8e;
+  --success-green: #00a862;
+  --warning-yellow: #fbbc04;
+  --error-red: #d50000;
+  --accent-teal: #00a5a8;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-xxxl: 64px;
+
+  /* Borders */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.15);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+/* Typography */
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--dark-text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: var(--space-lg);
+  color: var(--starbucks-light-green);
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: var(--starbucks-gold);
+}
+
+.section-description {
+  font-size: 1.1rem;
+  color: var(--medium-text);
+  margin-bottom: var(--space-xl);
+  max-width: 800px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--starbucks-light-green);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--starbucks-green);
+  border: 2px solid var(--starbucks-green);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 98, 65, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Sections */
+section {
+  padding: var(--space-xxl) 0;
+}
+
+/* Hero Section */
+.hero {
+  background-color: var(--starbucks-cream);
+  padding: var(--space-xxxl) 0;
+  text-align: center;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/hero-pattern.svg);
+  background-size: cover;
+  opacity: 0.1;
+  z-index: 0;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+  color: var(--starbucks-light-green);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-xl);
+  color: var(--medium-text);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Featured Drinks Section */
+.featured-drinks {
+  background-color: var(--white);
+}
+
+.featured-carousel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+.featured-drink {
+  background-color: var(--off-white);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-medium);
+}
+
+.featured-drink:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+.featured-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.featured-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.featured-drink:hover .featured-image img {
+  transform: scale(1.05);
+}
+
+.featured-info {
+  padding: var(--space-lg);
+}
+
+.featured-info h3 {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-sm);
+  color: var(--starbucks-light-green);
+}
+
+.drink-description {
+  font-size: 0.95rem;
+  color: var(--medium-text);
+  margin-bottom: var(--space-md);
+}
+
+.nutrition-highlights {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.nutrition-item {
+  font-size: 0.85rem;
+  color: var(--light-text);
+  background-color: var(--starbucks-cream);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--starbucks-light-green);
+  color: var(--white);
+  padding: var(--space-xxl) 0 var(--space-lg);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-xxl);
+}
+
+.footer-logo {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo-img {
+  width: 120px;
+  margin-bottom: var(--space-md);
+}
+
+.footer-tagline {
+  font-size: 1rem;
+  max-width: 300px;
+  color: var(--light-gray);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xxl);
+}
+
+.footer-column {
+  min-width: 160px;
+}
+
+.footer-heading {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-lg);
+  color: var(--starbucks-gold);
+}
+
+.footer-list li {
+  margin-bottom: var(--space-sm);
+}
+
+.footer-list a {
+  color: var(--light-gray);
+  transition: color var(--transition-fast);
+}
+
+.footer-list a:hover {
+  color: var(--white);
+}
+
+.footer-bottom {
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--medium-gray);
+}
+
+.social-links {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.social-link {
+  color: var(--medium-gray);
+  transition: color var(--transition-fast);
+}
+
+.social-link:hover {
+  color: var(--starbucks-gold);
+}

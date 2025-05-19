@@ -1,0 +1,442 @@
+/* Details Page Styles */
+
+.drink-details-page {
+  padding: var(--space-xl) 0;
+  min-height: 100vh;
+  background-color: var(--off-white);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+  font-size: 0.9rem;
+}
+
+.breadcrumb a {
+  color: var(--medium-text);
+  transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+  color: var(--starbucks-green);
+}
+
+.breadcrumb span {
+  color: var(--light-text);
+}
+
+.breadcrumb .current {
+  color: var(--starbucks-light-green);
+  font-weight: 600;
+}
+
+/* Details Content Layout */
+.details-content {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--space-xl);
+}
+
+.details-main {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+/* Gallery */
+.drink-gallery {
+  margin-bottom: var(--space-xl);
+}
+
+.main-image {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--space-md);
+}
+
+.main-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.image-thumbnails {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.thumbnail {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail:hover {
+  transform: translateY(-2px);
+}
+
+.thumbnail.active {
+  border-color: var(--starbucks-green);
+}
+
+/* Drink Info */
+.drink-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.drink-header h1 {
+  font-size: 2rem;
+  color: var(--starbucks-light-green);
+  margin-bottom: 0;
+}
+
+.drink-category {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.category-tag {
+  background-color: var(--starbucks-cream);
+  color: var(--starbucks-light-green);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.drink-description {
+  font-size: 1.1rem;
+  color: var(--medium-text);
+  line-height: 1.6;
+  margin-bottom: var(--space-xl);
+}
+
+/* Customization Options */
+.customization-options {
+  margin-bottom: var(--space-xl);
+}
+
+.customization-options h2 {
+  font-size: 1.4rem;
+  margin-bottom: var(--space-lg);
+  color: var(--starbucks-light-green);
+}
+
+.option-group {
+  margin-bottom: var(--space-xl);
+}
+
+.option-group h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-md);
+  color: var(--dark-text);
+}
+
+.size-options {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.size-btn {
+  padding: var(--space-sm) var(--space-lg);
+  border: 2px solid var(--light-gray);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  color: var(--medium-text);
+  transition: all var(--transition-fast);
+}
+
+.size-btn:hover {
+  border-color: var(--starbucks-green);
+  color: var(--starbucks-green);
+}
+
+.size-btn.active {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+  border-color: var(--starbucks-green);
+}
+
+.milk-options,
+.shot-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.option-btn {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--light-gray);
+  border-radius: var(--border-radius-md);
+  font-size: 0.9rem;
+  color: var(--medium-text);
+  transition: all var(--transition-fast);
+}
+
+.option-btn:hover {
+  border-color: var(--starbucks-green);
+  color: var(--starbucks-green);
+}
+
+.option-btn.active {
+  background-color: var(--starbucks-cream);
+  color: var(--starbucks-green);
+  border-color: var(--starbucks-green);
+}
+
+.shot-control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.quantity-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--off-white);
+  color: var(--medium-text);
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.quantity-btn:hover {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+}
+
+.quantity {
+  font-weight: 600;
+  color: var(--dark-text);
+  min-width: 24px;
+  text-align: center;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.compare-btn,
+.favorite-btn-large {
+  flex: 1;
+  padding: var(--space-md);
+  border-radius: var(--border-radius-md);
+  font-weight: 600;
+  text-align: center;
+  transition: all var(--transition-fast);
+}
+
+.compare-btn {
+  background-color: var(--starbucks-green);
+  color: var(--white);
+}
+
+.compare-btn:hover {
+  background-color: var(--starbucks-light-green);
+  transform: translateY(-2px);
+}
+
+.favorite-btn-large {
+  background-color: transparent;
+  color: var(--starbucks-green);
+  border: 2px solid var(--starbucks-green);
+}
+
+.favorite-btn-large:hover {
+  background-color: var(--starbucks-cream);
+}
+
+/* Sidebar */
+.details-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+/* Nutrition Facts */
+.nutrition-facts {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.nutrition-facts h2 {
+  font-size: 1.4rem;
+  margin-bottom: var(--space-lg);
+  color: var(--starbucks-light-green);
+}
+
+.serving-size {
+  font-size: 0.9rem;
+  color: var(--medium-text);
+  margin-bottom: var(--space-lg);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.nutrition-item {
+  text-align: center;
+}
+
+.nutrition-item .value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--starbucks-light-green);
+  margin-bottom: var(--space-xs);
+}
+
+.nutrition-item .label {
+  font-size: 0.9rem;
+  color: var(--medium-text);
+}
+
+.allergens {
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--light-gray);
+}
+
+.allergens h3 {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-sm);
+  color: var(--dark-text);
+}
+
+.allergens p {
+  font-size: 0.9rem;
+  color: var(--medium-text);
+}
+
+/* Similar Drinks */
+.similar-drinks {
+  background-color: var(--white);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.similar-drinks h2 {
+  font-size: 1.4rem;
+  margin-bottom: var(--space-lg);
+  color: var(--starbucks-light-green);
+}
+
+.similar-grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.similar-drink {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-fast);
+}
+
+.similar-drink:hover {
+  background-color: var(--off-white);
+  transform: translateX(var(--space-xs));
+}
+
+.similar-drink img {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--border-radius-sm);
+  object-fit: cover;
+}
+
+.similar-info h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-xs);
+  color: var(--starbucks-light-green);
+}
+
+.similar-info p {
+  font-size: 0.9rem;
+  color: var(--medium-text);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .details-content {
+    grid-template-columns: 1fr;
+  }
+
+  .details-sidebar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .main-image img {
+    height: 300px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .details-sidebar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .drink-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+
+  .size-options,
+  .milk-options,
+  .shot-options {
+    flex-direction: column;
+  }
+
+  .size-btn,
+  .option-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

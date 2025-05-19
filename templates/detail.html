@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drink Details - Starbucks Beverage Explorer</title>
+    <link rel="stylesheet" href="../static/css/reset.css">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <link rel="stylesheet" href="../static/css/header.css">
+    <link rel="stylesheet" href="../static/css/detail.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.png" alt="Starbucks Beverage Explorer" class="logo-img">
+                <h1>Beverage Explorer</h1>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link active">Beverages</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Analysis</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Favorites</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="drink-details-page">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="/index">Beverages</a>
+                <span>/</span>
+                <span class="current">{{ drink.Drink.name }}</span>
+            </nav>
+
+            <div class="details-content">
+                <div class="details-main">
+                    <div class="drink-gallery">
+                        <div class="main-image">
+                            <img src="{{ drink.Drink.image_url }}"
+                                alt="Caffè Latte">
+                        </div>
+
+                    </div>
+
+                    <div class="drink-info">
+                        <div class="drink-header">
+                            <h1>{{ drink.Drink.name }}</h1>
+                            <button class="favorite-btn">❤</button>
+                        </div>
+
+                        <div class="drink-category">
+                            <span class="category-tag">{{ drink.Category.name }}</span>
+                        </div>
+
+
+                        <div class="customization-options">
+                            <h2>Customization Options</h2>
+
+                            <div class="option-group">
+                                <h3>Size</h3>
+                                <div class="size-options">
+                                    <button class="size-btn">Short</button>
+                                    <button class="size-btn active">Tall</button>
+                                    <button class="size-btn">Grande</button>
+                                    <button class="size-btn">Venti</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="compare-btn">Add to Compare</button>
+                            <button class="favorite-btn-large">Add to Favorites</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="details-sidebar">
+                    <div class="nutrition-facts">
+                        <h2>Nutrition Facts</h2>
+                        <div class="serving-size">
+                            <p>Serving Size: Grande (16 fl oz)</p>
+                        </div>
+
+                        <div class="nutrition-grid">
+                            <div class="nutrition-item">
+                                <span class="value">190</span>
+                                <span class="label">Calories</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="value">18g</span>
+                                <span class="label">Sugar</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="value">150mg</span>
+                                <span class="label">Caffeine</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="value">7g</span>
+                                <span class="label">Fat</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="value">13g</span>
+                                <span class="label">Protein</span>
+                            </div>
+                            <div class="nutrition-item">
+                                <span class="value">19g</span>
+                                <span class="label">Carbs</span>
+                            </div>
+                        </div>
+
+                        <div class="allergens">
+                            <h3>Allergens</h3>
+                            <p>Contains: Milk</p>
+                        </div>
+                    </div>
+
+                    <div class="similar-drinks">
+                        <h2>Similar Drinks</h2>
+                        <div class="similar-grid">
+                            <a href="#" class="similar-drink">
+                                <img src="https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg"
+                                    alt="Cappuccino">
+                                <div class="similar-info">
+                                    <h3>Cappuccino</h3>
+                                    <p>190 cal</p>
+                                </div>
+                            </a>
+                            <a href="#" class="similar-drink">
+                                <img src="https://images.pexels.com/photos/2638019/pexels-photo-2638019.jpeg"
+                                    alt="Flat White">
+                                <div class="similar-info">
+                                    <h3>Flat White</h3>
+                                    <p>170 cal</p>
+                                </div>
+                            </a>
+                            <a href="#" class="similar-drink">
+                                <img src="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg"
+                                    alt="Americano">
+                                <div class="similar-info">
+                                    <h3>Americano</h3>
+                                    <p>10 cal</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="Starbucks Beverage Explorer" class="footer-logo-img">
+                    <p class="footer-tagline">Explore, analyze, and discover your perfect Starbucks beverage</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3 class="footer-heading">Explorer</h3>
+                        <ul class="footer-list">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Search</a></li>
+                            <li><a href="#">Analysis</a></li>
+                            <li><a href="#">Comparison</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-heading">Resources</h3>
+                        <ul class="footer-list">
+                            <li><a href="#">Nutrition Guide</a></li>
+                            <li><a href="#">Allergen Information</a></li>
+                            <li><a href="#">Customization Guide</a></li>
+                            <li><a href="#">Seasonal Drinks</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3 class="footer-heading">About</h3>
+                        <ul class="footer-list">
+                            <li><a href="#">Our Data</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">© 2025 Starbucks Beverage Explorer. This is an unofficial fan site not affiliated
+                    with Starbucks Corporation.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
