@@ -283,7 +283,7 @@
   color: var(--medium-text);
 }
 
-#sort-select {
+.select {
   padding: var(--space-sm) var(--space-md);
   border: 1px solid var(--light-gray);
   border-radius: var(--border-radius-sm);

@@ -3,6 +3,9 @@ from CrawlStarbucks.db.database import engine, Base
 from CrawlStarbucks.models import Category, Drink, DrinkInfo, Size
 
 import requests
+import pandas as pd
+
+
 
 Base.metadata.create_all(bind=engine)
 Session = sessionmaker(bind=engine)
@@ -84,6 +87,8 @@ def fetch_and_save_detailed_info(drink: Drink):
         "User-Agent": "Mozilla/5.0"
     }
 
+    excel_data = []  # Danh sách lưu dữ liệu sẽ ghi ra Excel
+
     try:
         res = requests.get(url, headers=headers)
         print(res.status_code)
@@ -115,11 +120,6 @@ def fetch_and_save_detailed_info(drink: Drink):
                 # Lấy nutrition data
                 nutrition = size.get("nutrition", {})
 
-                # Chuyển đổi tất cả các giá trị số thành chuỗi để phù hợp với kiểu dữ liệu varchar
-                # def (value):
-                #     if value is None:
-                #         return None
-                #     return str(value)
 
                 # Xử lý calories
                 calories_data = nutrition.get("calories", {})
@@ -199,11 +199,38 @@ def fetch_and_save_detailed_info(drink: Drink):
                 except Exception as e:
                     session.rollback()
                     print(f"Lỗi khi lưu thông tin cho {drink.name}, size {size_code}: {e}")
+
+                excel_data.append({
+                    'Tên đồ uống': drink.name,
+                    'Size': size_code,
+                    'Calories': calories_str,
+                    'Total Fat': total_fat,
+                    'Saturated Fat': saturated_fat,
+                    'Trans Fat': trans_fat,
+                    'Cholesterol': cholesterol,
+                    'Sodium': sodium,
+                    'Total Carbs': total_carbs,
+                    'Dietary Fiber': dietary_fiber,
+                    'Sugars': sugars,
+                    'Protein': protein,
+                    'Caffeine': caffeine,
+                    'Ingredients': ingredients_str
+                })
+
+
         else:
             print("Không tìm thấy sản phẩm")
 
     except Exception as e:
         print(f"Lỗi khi lấy dữ liệu cho {drink.name}: {e}")
+
+    if excel_data:
+        try:
+            df = pd.DataFrame(excel_data)
+            df.to_excel("starbucks_nutrition.xlsx", index=False, engine='openpyxl')
+            print("Đã lưu dữ liệu vào file starbucks_nutrition.xlsx")
+        except Exception as e:
+            print(f"Lỗi khi ghi file Excel: {e}")
 
 if __name__ == '__main__':
     url = 'https://www.starbucks.com/apiproxy/v1/ordering/menu'

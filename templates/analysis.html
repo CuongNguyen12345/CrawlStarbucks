@@ -4,15 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <title>Starbucks Beverage Explorer</title>
     <link rel="stylesheet" href="../static/css/reset.css">
     <link rel="stylesheet" href="../static/css/main.css">
     <link rel="stylesheet" href="../static/css/header.css">
-    <link rel="stylesheet" href="../static/css/search.css">
-    <link rel="stylesheet" href="../static/css/cards.css">
     <link rel="stylesheet" href="../static/css/analysis.css">
-
+    <link rel="stylesheet" href="../static/css/search.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +20,11 @@
 </head>
 
 <body>
+    <style>
+        /*.chart-image {*/
+        /*    height: 660px;*/
+        /*}*/
+    </style>
     <header class="header">
         <div class="container header-container">
             <div class="logo">
@@ -42,11 +45,12 @@
             </div>
             <nav class="main-nav">
                 <ul class="nav-list">
-                    <li class="nav-item"><a href="/" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Beverages</a></li>
-                    <li class="nav-item"><a href="/analysis" class="nav-link">Analysis</a></li>
+                    <li class="nav-item"><a href="/analysis" class="nav-link active">Analysis</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Compare</a></li>
                     <li class="nav-item"><a href="#" class="nav-link">Favorites</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+
                 </ul>
             </nav>
             <div class="mobile-menu-toggle">
@@ -57,201 +61,68 @@
         </div>
     </header>
 
-    <section class="hero">
+
+
+    <section class="data-analysis">
         <div class="container">
-            <h2 class="hero-title">Discover Your Perfect Starbucks Drink</h2>
-            <p class="hero-subtitle">Search, analyze, and compare over 100+ Starbucks beverages</p>
+            <h2 class="section-title">Beverage Analysis</h2>
+            <p class="section-description">Compare nutritional content across different drink categories</p>
 
-            <form class="search-container" method="GET" action="/">
-                <div class="search-box">
-                    <input type="text" id="search-input" name="search" placeholder="Search beverages..." value="{{ request.args.get('search', '') }}">
-                    <button class="search-button" type="submit">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
+            <div class="analysis-tools">
+                <div class="chart-selector">
+                    <button class="chart-btn" onclick="sendSelection(this, 'calories')">Calories</button>
+                    <button class="chart-btn" onclick="sendSelection(this, 'sugar')">Sugar</button>
+                    <button class="chart-btn" onclick="sendSelection(this, 'caffeine')">Caffeine</button>
+                    <button class="chart-btn" onclick="sendSelection(this, 'fat')">Fat</button>
 
-    <section class="advanced-search-section">
-        <div class="container">
-            <div class="advanced-search-toggle">
-                <h2 class="section-title">Advanced Search</h2>
-                <button class="toggle-btn">+</button>
-            </div>
-
-            <form class="advanced-filters" method="GET" action="/">
-                <div class="filter-group">
-                    <h3 class="filter-title">Drink Type</h3>
-                    <div class="filter-options">
-                        {% for category in categories%}
-                            <label class="filter-option">
-                                <input type="radio" name="type" value="{{ category.id }}"
-                                    {% if request.args.get('type') == category.id|string %}
-                                        checked
-                                    {% endif %}>
-                                <span class="checkmark"></span>
-                                {{ category.name }}
-                            </label>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <h3 class="filter-title">Nutritional Filters</h3>
-                    <div class="filter-options nutrition-filters">
-                        <div class="range-filter">
-                            <label>Calories</label>
-                            <div class="range-inputs">
-                                <input type="number" name="minCalories" value="{{ request.args.get('minCalories', '') }}" placeholder="Min" min="0">
-                                <span>to</span>
-                                <input type="number" name="maxCalories" value="{{ request.args.get('maxCalories', '') }}" placeholder="Max" max="400">
-                            </div>
-                        </div>
-                        <div class="range-filter">
-                            <label>Sugar (g)</label>
-                            <div class="range-inputs">
-                                <input type="number" name="minSugar" value="{{ request.args.get('minSugar', '') }}" placeholder="Min" min="0">
-                                <span>to</span>
-                                <input type="number" name="maxSugar" value="{{ request.args.get('maxSugar', '') }}" placeholder="Max" min="90">
-                            </div>
-                        </div>
-                        <div class="range-filter">
-                            <label>Caffeine (mg)</label>
-                            <div class="range-inputs">
-                                <input type="number" name="minCaffeine" value="{{ request.args.get('minCaffeine', '') }}" placeholder="Min" min="0">
-                                <span>to</span>
-                                <input type="number" name="maxCaffeine" value="{{ request.args.get('maxCaffeine', '') }}" placeholder="Max" min="350">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-group">
-                    <h3 class="filter-title">Dietary Preferences</h3>
-                    <div class="filter-options">
-                        <label class="filter-option">
-                            <input type="checkbox" name="dietary" value="vegan">
-                            <span class="checkmark"></span>
-                            Vegan Options
-                        </label>
-                        <label class="filter-option">
-                            <input type="checkbox" name="dietary" value="nondairy">
-                            <span class="checkmark"></span>
-                            Non-Dairy Options
-                        </label>
-                        <label class="filter-option">
-                            <input type="checkbox" name="dietary" value="lowcalorie">
-                            <span class="checkmark"></span>
-                            Low Calorie (&lt;100)
-                        </label>
-                        <label class="filter-option">
-                            <input type="checkbox" name="dietary" value="lowsugar">
-                            <span class="checkmark"></span>
-                            Low Sugar (&lt;10g)
-                        </label>
-                    </div>
-                </div>
-
-                <button class="apply-filters-btn" type="submit">Apply Filters</button>
-            </form>
-        </div>
-    </section>
-
-    <section class="search-results">
-        <div class="container">
-            <div class="results-header">
-                <h2 class="section-title">Beverages ({{ total }})</h2>
-                <div class="results-actions">
-                    <div class="sort-options">
-                        <label for="sort-select">Sort by:</label>
-                        <select id="sort-select" class="select">
-                            <option value="popular">Popularity</option>
-                            <option value="az">Name A-Z</option>
-                            <option value="za">Name Z-A</option>
-                            <option value="calories-low">Calories: Low to High</option>
-                            <option value="calories-high">Calories: High to Low</option>
+                    <div style="margin-left: 35px">
+                        <label for="category-select">Category:</label>
+                        <select  class="select" id="category-select" style="width: 200px; margin-left: 10px;">
+                            <option value=""></option>
+                            {% for category in categories %}
+                                <option value="{{ category.id }}">{{ category.name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
-                </div>
-            </div>
 
-            <div class="beverage-grid">
-                {% for drink in drinks %}
-                    <div class="beverage-card">
-                        <div class="card-image">
-                            <img src="{{ drink.image_url }}" alt="{{ drink.name }}">
-                            <button class="favorite-btn">❤</button>
-                        </div>
-                        <div class="card-content">
-                            <h3 class="drink-name">{{ drink.name }}</h3>
-                            <div class="nutrition-facts">
-                                <div class="nutrition-fact">
-                                    <span class="fact-value">{{ drink.calories }}</span>
-                                    <span class="fact-label">Calories</span>
-                                </div>
-                                <div class="nutrition-fact">
-                                    <span class="fact-value">{{ drink.sugars }}</span>
-                                    <span class="fact-label">Sugar</span>
-                                </div>
-                                <div class="nutrition-fact">
-                                    <span class="fact-value">{{ drink.caffeine }}</span>
-                                    <span class="fact-label">Caffeine</span>
-                                </div>
-                            </div>
-                            <div class="card-actions">
-                                <button onclick="handleClick({{ drink.id }})" class="details-btn">View Details</button>
-                                <button class="compare-btn">Compare</button>
-                            </div>
+                </div>
+
+                <div class="chart-container" style="height: 600px;">
+                    <canvas id="myChart" class="chart-image" style="height: 520px"></canvas>
+                    <div class="chart-data">
+                        <div class="chart-legend">
+
                         </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
 
-            <div class="pagination">
-                {% if page > 1 %}
-                    <a href="{{ url_for('home', page=page-1,
-                                                search=request.args.get('search'),
-                                                minCalories=request.args.get('minCalories'),
-                                                maxCalories=request.args.get('maxCalories'),
-                                                minSugar=request.args.get('minSugar'),
-                                                maxSugar=request.args.get('maxSugar'),
-                                                minCaffeine=request.args.get('minCaffeine'),
-                                                maxCaffeine=request.args.get('maxCaffeine'))}}" class="page-btn prev">
-                        Previous
-                    </a>
-                {% endif %}
+            <div class="comparison-tool">
+                <h3 class="comparison-title">Drink Comparison Tool</h3>
+                <p class="comparison-description">Select up to 3 drinks to compare side by side</p>
 
-                <div class="page-numbers">
-                    {% for p in range(1, total_pages + 1) %}
-                        {% if p == page %}
-                            <span class="page-number active">{{ p }}</span>
-                        {% else %}
-                            <a href="{{ url_for('home', page=p, search=request.args.get('search'),
-                                                        minCalories=request.args.get('minCalories'),
-                                                        maxCalories=request.args.get('maxCalories'),
-                                                        minSugar=request.args.get('minSugar'),
-                                                        maxSugar=request.args.get('maxSugar'),
-                                                        minCaffeine=request.args.get('minCaffeine'),
-                                                        maxCaffeine=request.args.get('maxCaffeine'))}}" class="page-number">{{ p }}</a>
-                        {% endif %}
-                    {% endfor %}
+                <div class="compare-drinks">
+                    <div class="compare-slot">
+                        <div class="slot-placeholder">
+                            <span>+ Add Drink</span>
+                        </div>
+                    </div>
+                    <div class="compare-slot">
+                        <div class="slot-placeholder">
+                            <span>+ Add Drink</span>
+                        </div>
+                    </div>
+                    <div class="compare-slot">
+                        <div class="slot-placeholder">
+                            <span>+ Add Drink</span>
+                        </div>
+                    </div>
                 </div>
 
-                {% if page < total_pages %}
-                    <a href="{{ url_for('home', page=page+1, search=request.args.get('search'),
-                                                             minCalories=request.args.get('minCalories'),
-                                                             maxCalories=request.args.get('maxCalories'),
-                                                             minSugar=request.args.get('minSugar'),
-                                                             maxSugar=request.args.get('maxSugar'),
-                                                             minCaffeine=request.args.get('minCaffeine'),
-                                                             maxCaffeine=request.args.get('maxCaffeine'))}}" class="page-btn next">Next</a>
-                {% endif %}
+                <button class="compare-now-btn">Compare Now</button>
             </div>
-
         </div>
     </section>
-
 
 
     <section class="customization-tips">
@@ -326,45 +197,96 @@
             </div>
 
             <div class="footer-bottom">
-<!--                <p class="copyright">© 2025 Starbucks Beverage Explorer. This is an unofficial fan site not affiliated-->
-<!--                    with Starbucks Corporation.</p>-->
-<!--                <div class="social-links">-->
-<!--                    <a href="#" class="social-link">Facebook</a>-->
-<!--                    <a href="#" class="social-link">Instagram</a>-->
-<!--                    <a href="#" class="social-link">Twitter</a>-->
-<!--                </div>-->
-                <label>Made by DevNguyen</label>
+                <p class="copyright">© 2025 Starbucks Beverage Explorer. This is an unofficial fan site not affiliated
+                    with Starbucks Corporation.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
             </div>
         </div>
     </footer>
 
+    <script>
+        const selectElement = document.querySelector('#category-select'); // lấy select dropdown
+        const legendContainer = document.querySelector('.chart-legend'); // lấy vùng hiển thị legend
 
+        let selectedOptionsKey = [];
+        let selectedOptionsValue = [];
+        let selectedOptionsColor = [];
+        // Hàm tạo màu ngẫu nhiên
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            selectedOptionsColor.push(color);
+            return color;
+        }
+
+        // Xử lý sự kiện khi người dùng chọn item
+        selectElement.addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex];
+            const selectedText = selectedOption.text;     // Đây là key bạn muốn hiển thị
+            if (!selectedText) return;
+            const selectedValue = selectedOption.value;   // Đây là ID (không dùng để hiển thị)
+            selectedOptionsKey.push(selectedText);
+            selectedOptionsValue.push(selectedValue);
+
+            // Kiểm tra nếu đã có thì không thêm nữa (tránh trùng)
+            const existing = Array.from(legendContainer.children).some(item =>
+                item.textContent.trim() === selectedValue
+            );
+            if (existing) return;
+
+            // Tạo phần tử legend mới
+            const legendItem = document.createElement('div');
+            legendItem.classList.add('legend-item');
+
+            // Sự kiện xóa khi click vào chính phần tử này
+            legendItem.addEventListener('click', function () {
+                legendContainer.removeChild(legendItem);
+                const index = selectedOptionsKey.indexOf(legendItem.textContent);
+                selectedOptionsKey.splice(index, 1);
+                selectedOptionsValue.splice(index, 1);
+            });
+
+            const colorBox = document.createElement('span');
+            colorBox.classList.add('color-box');
+            const randomColor = getRandomColor();
+            colorBox.style.backgroundColor = randomColor;
+
+            const label = document.createElement('span');
+            label.classList.add('legend-label');
+            label.textContent = selectedText;
+
+            legendItem.appendChild(colorBox);
+            legendItem.appendChild(label);
+            legendContainer.appendChild(legendItem);
+        });
+    </script>
 
     <script>
-        document.querySelectorAll('input[type=radio][name=type]').forEach(radio => {
-          radio.addEventListener('mousedown', function (e) {
-            if (this.checked) {
-              this.wasChecked = true;
-            }
-          });
+        const response = await fetch('/get_data', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ drink: drink, metric: metric })
+                      });
 
-          radio.addEventListener('click', function (e) {
-            if (this.wasChecked) {
-              this.checked = false;
-            }
-            this.wasChecked = false;
-          });
-        });
+        const result = await response.json();
+        console.log(result);
 
-        function handleClick(id) {
-            window.location.href =  `/detail/${id}`;
-            console.log(id)
-        }
 
     </script>
 
+    <script src="../static/js/chartCompare.js">
 
-
+    </script>
 </body>
 
 </html>
+
+
+
